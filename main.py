@@ -11,7 +11,7 @@ log.setLevel(logging.DEBUG)
 cl = []
 mongo = MongoClient(os.environ['MONGODB_URI'])
 
-db = mongo['dev']
+db = mongo['heroku_qrz1x7w8']
 db['dummy'].insert_one({"name":"Piglet"})
 
 class AppHandler(tornado.web.RequestHandler):
