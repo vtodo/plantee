@@ -1,0 +1,26 @@
+{
+  "name": "dawgee",
+  "description": "src of dawgee.cc",
+  "scripts": {
+  },
+  "env": {
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "environments": {
+    "test": {
+      "scripts": {
+        "test-setup": "pip install pylint",
+        "test": "pylint dist/main"
+      }
+    }
+  }
+}
