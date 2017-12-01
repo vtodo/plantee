@@ -5,10 +5,9 @@ _ = require "underscore"
 
 { Link, BrowserRouter, Route, Switch } = require "react-router-dom"
 
-
-StatView = require "./views/StatView.coffee"
 HomeView = require "./views/HomeView.coffee"
-TasksView = require "./views/TasksView.coffee"
+InputView = require "./views/InputView.coffee"
+
 
 Tag = require "antd/lib/tag"
 Table = require "antd/lib/table"
@@ -19,12 +18,8 @@ Layout = require "antd/lib/layout"
 class Main extends React.Component
     constructor:->
         super arguments...
-      
         @state = {
-            criteria : {
-                nodes:[]
-                edges:[]
-            }
+           
         }
 
     render:->
@@ -41,24 +36,18 @@ class Main extends React.Component
                         }
                     },
                     React.createElement Switch, {},
-                        React.createElement Route, {path:"/temp", component:TasksView}
-                        
+                        React.createElement Route, {path:"/input", component:InputView}
                         React.createElement Route, {path:"/", component:HomeView}
 
                 React.createElement Footer, {
-                     style:{ 
-                        position: 'fixed'
-                        width: '100%'
-                        backgroundColor:"red"
-                        bottom:0
-                    }
+                     className:"footer-box"
                 }
                 
                 React.createElement Header, {
                     className: "header-box"
                 },
-                    React.createElement Link, {to:"/"}, "home "
-                    React.createElement Link, {to:"/temp"}, "temp "
+                    React.createElement Link, {to:"/"}, "списък    "
+                    React.createElement Link, {to:"/input"}, "добави "
 
 window.onload = ->
     ReactDOM.render React.createElement(Main), document.getElementById("root")

@@ -1,0 +1,84 @@
+@font-face
+{
+    font-family: GEO;
+    src: url(/assets/Geometria-Light.otf);
+    font-weight:400;
+}
+
+.input-200-20 {
+    width:400px!important;
+    height: 28px!important;
+    display: block!important;    
+}
+
+
+body {
+    overflow:hidden;
+    width: 100% !important;
+    font-family: "GEO";
+    position: relative;
+
+    /*-webkit-transition: all 2s ease-in-out;
+    transition: all 2s ease-in-out;*/
+    display: inline-block;
+    box-sizing: border-box;
+}
+a, a:hover, a:focus, a:active {
+    color:white;
+}
+
+.sigma-main {
+    width: 100%;
+    height: 100%;
+}
+.home-card {
+    margin: 20px;
+}
+
+.search-box {
+    position:fixed;
+    right: -10px;
+    top: 15px;
+    width:50%;
+}
+
+.search-select {
+    width:100%;
+}
+.header-box {
+    position:fixed;
+    width:100%;
+    background-color:rgb(12, 100, 100);
+}
+.footer-box {
+    position: fixed;
+    width:100%;
+    background-color:rgb(8, 63, 63);
+    bottom:0;
+}
+/* 
+    ob6t vid:
+        darveta
+        hrasti
+        cvetq
+
+        paprati
+        muhuve
+        gabi
+        liqni
+*/
+
+
+
+
+.ant-btn-primary:focus, .ant-btn-primary:hover {
+    color: #fff;
+    background-color: rgb(12, 100, 100);
+    border-color: rgb(12, 100, 100);
+}
+
+.ant-btn-primary, .ant-btn-primary {
+    color: #fff;
+    background-color: rgb(8, 63, 63);
+    border-color: rgb(8, 63, 63);
+}

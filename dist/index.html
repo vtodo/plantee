@@ -1,9 +1,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-
-  <title>DAWGEE - puzzle game for dog lovers</title>
-  <meta name="description" content="PLANTEE - puzzle game for plant lovers">
+  {% autoescape None %}
+  
+  <title>plantee</title>
+  <meta name="description" content="plantee">
   <meta name="author" content="digital mountains">
 
   <link rel="stylesheet" href="css/antd.min.css?v=1.0">
@@ -16,9 +17,9 @@
 </head>
 
 <body>
-  <h1>Hi {{ip}}</h1>
-  <ul>There are {{clients}} clients online</ul>
+ 
   <div id="root"></div>
   <script src="js/main.bundle.js"></script>
+  
 </body>
 </html>
