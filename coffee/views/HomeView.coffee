@@ -46,7 +46,7 @@ class HomeView extends React.Component
                 React.createElement Col, {md:14, xs:24},
                     React.createElement Card, {
                         className:"home-card"
-                        title:selected.species
+                        title:selected.species + " / " + selected.latin + " / " + selected.english
                     },
                         React.createElement "div",{}, "общ вид "+selected.type
                         React.createElement "div",{}, "отдел "+selected.division
@@ -57,6 +57,17 @@ class HomeView extends React.Component
                         React.createElement "div",{}, "ниво на застрашеност "+selected.endangered
                         React.createElement "div",{}, "ядливо "+selected.edible
                         React.createElement "div",{}, "билка "+selected.herb
+                        React.createElement "img",{
+                            src:selected.image
+                            width:200
+                            height:150
+                            style:{
+                                objectFit:"cover"
+                                position:"absolute"
+                                top:"80px"
+                                right:"20px"
+                            }
+                        }
                 
 
 

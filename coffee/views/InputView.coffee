@@ -64,7 +64,7 @@ class InputView extends React.Component
                     )
                 )
         },[
-            React.createElement FormItem, {key:0},
+            React.createElement FormItem, {key:-1},
                 getFieldDecorator('type', {
                     rules: [{ required: true, message: 'жизнена форма' }],
                     })(
@@ -81,6 +81,26 @@ class InputView extends React.Component
                             React.createElement SelectOption, {key:4, value:"mosses"}, "Мъхове"
                             React.createElement SelectOption, {key:5, value:"liana"}, "Лияни"
                             React.createElement SelectOption, {key:6, value:"shrooms"}, "Гъби"
+                    )
+
+            React.createElement FormItem, {key:0},
+                getFieldDecorator('latin', {
+                    rules: [{ required: true, message: 'Audacter omnia complens' }],
+                    })(
+                        React.createElement Input, {
+                            placeholder:"вид на латински"
+                            className:"input-200-20"
+                        }
+                    )
+
+            React.createElement FormItem, {key:-2},
+                getFieldDecorator('english', {
+                    rules: [{ required: true, message: 'enter the species!' }],
+                    })(
+                        React.createElement Input, {
+                            placeholder:"вид на англииски"
+                            className:"input-200-20"
+                        }
                     )
 
             React.createElement FormItem, {key:1},
@@ -257,6 +277,14 @@ class InputView extends React.Component
                         React.createElement Switch, {
                             checkedChildren:"защитено от МВР"
                             unCheckedChildren:"незащитено"
+                        }
+                    )
+
+            React.createElement FormItem, {key:13},
+                getFieldDecorator('image', {})(
+                        React.createElement Input, {
+                            placeholder:"image url"
+                            className:"input-200-20"
                         }
                     )
 
