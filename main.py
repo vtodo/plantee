@@ -7,7 +7,7 @@ from bson.json_util import dumps
 
 log = logging.getLogger("AppHandler")
 log.setLevel(logging.DEBUG)
-mongo = MongoClient(environ.get('MONGODB_URL',None))
+mongo = MongoClient(environ['MONGODB_URL'])
 db = mongo['heroku_qrz1x7w8']
 
 class DataHandler(tornado.web.RequestHandler):
