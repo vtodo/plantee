@@ -9,7 +9,7 @@ log = logging.getLogger("AppHandler")
 log.setLevel(logging.DEBUG)
 
 cl = []
-mongo = MongoClient(os.environ('MONGODB_URI'))
+mongo = MongoClient(os.environ['MONGODB_URI'])
 db = mongo['dev']
 db.insert({"name":"Piglet"})
 class AppHandler(tornado.web.RequestHandler):
