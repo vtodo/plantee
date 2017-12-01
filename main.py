@@ -12,7 +12,7 @@ cl = []
 mongo = MongoClient(os.environ['MONGODB_URI'])
 
 db = mongo['dev']
-db['dummy'].insert({"name":"Piglet"})
+db['dummy'].insert_one({"name":"Piglet"})
 
 class AppHandler(tornado.web.RequestHandler):
     def get(self, _=None):
