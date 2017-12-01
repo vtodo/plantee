@@ -9,10 +9,7 @@ log = logging.getLogger("AppHandler")
 log.setLevel(logging.DEBUG)
 
 cl = []
-mongo = MongoClient(os.environ['MONGODB_URI'],
-                    user=os.environ['MONGODB_USER'],
-                    password=os.environ['MONGODB_PASS']
-                    )
+mongo = MongoClient(os.environ['MONGODB_URI'])
 
 db = mongo['dev']
 db['dummy'].insert_one({"name":"Piglet"})
