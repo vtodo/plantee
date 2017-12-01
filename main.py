@@ -2,13 +2,18 @@ import tornado.web
 import tornado.websocket
 import logging
 import json
+from pymongo import MongoClient
+import os
 
 log = logging.getLogger("AppHandler")
 log.setLevel(logging.DEBUG)
 
 cl = []
+mongo = MongoClient(os.environ('MONGODB_URI'))
+db = mongo['dev']
+db.insert({"name":"Piglet"})
 class AppHandler(tornado.web.RequestHandler):
-    def get(self):
+    def get(self, _=None):
         log.info("Main")
         self.render('dist/index.html', ip = self.request.remote_ip, clients = len(cl))
     
@@ -32,9 +37,9 @@ class SocketHandler(tornado.websocket.WebSocketHandler):
             cl.remove(self)
 
 app = tornado.web.Application(handlers=[
-    (r"/", AppHandler),
     (r"/ws", SocketHandler),
     (r"/assets/(.*)", tornado.web.StaticFileHandler, {"path": "dist/assets/"}),
     (r"/js/(.*)", tornado.web.StaticFileHandler, {"path": "dist/js"}),
-    (r"/css/(.*)", tornado.web.StaticFileHandler, {"path": "dist/css/"})
+    (r"/css/(.*)", tornado.web.StaticFileHandler, {"path": "dist/css/"}),
+    (r"/(.*)", AppHandler)    
 ])

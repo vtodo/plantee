@@ -1,14 +1,14 @@
-<!doctype html>
-
 <html lang="en">
 <head>
   <meta charset="utf-8">
 
   <title>DAWGEE - puzzle game for dog lovers</title>
-  <meta name="description" content="DAWGEE - puzzle game for dog lovers">
+  <meta name="description" content="PLANTEE - puzzle game for plant lovers">
   <meta name="author" content="digital mountains">
 
+  <link rel="stylesheet" href="css/antd.min.css?v=1.0">
   <link rel="stylesheet" href="css/styles.css?v=1.0">
+  <link rel="stylesheet" href="css/webkitscrollbar.css?v=1.0">
 
   <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
@@ -17,12 +17,8 @@
 
 <body>
   <h1>Hi {{ip}}</h1>
-  <div id="log">123</div>
   <ul>There are {{clients}} clients online</ul>
-  <input id="message" type="text"/>
-  <button id="submit"> Submit </button>
-  
-  <img src="assets/test.jpg"/>
+  <div id="root"></div>
   <script src="js/main.bundle.js"></script>
 </body>
 </html>
