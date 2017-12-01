@@ -93,15 +93,6 @@ class InputView extends React.Component
                         }
                     )
 
-            React.createElement FormItem, {key:-2},
-                getFieldDecorator('english', {
-                    rules: [{ required: true, message: 'enter the species!' }],
-                    })(
-                        React.createElement Input, {
-                            placeholder:"вид на англииски"
-                            className:"input-200-20"
-                        }
-                    )
 
             React.createElement FormItem, {key:1},
                 getFieldDecorator('species', {
