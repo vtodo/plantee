@@ -4,10 +4,14 @@ from datetime import datetime
 import tornado.web
 import logging
 from bson.json_util import dumps
+from bson.objectid import ObjectId
 
 log = logging.getLogger("AppHandler")
 log.setLevel(logging.DEBUG)
-mongo = MongoClient(environ['MONGODB_URL'])
+db_url = None
+if 'MONGODB_URL' in environ:
+    db_url = environ['MONGODB_URL']
+mongo = MongoClient(db_url)
 db = mongo['heroku_qrz1x7w8']
 
 class DataHandler(tornado.web.RequestHandler):
@@ -21,7 +25,16 @@ class InputHandler(AppHandler):
         data = tornado.escape.json_decode(self.request.body)
         log.info(data)
         log.info(data['species'])
+        if 'oid' in data:
+            print("Updated !")
+            oid = data["oid"]
+            del data["oid"]
+
+            db.plants.update_one({"_id":ObjectId(oid)},{"$set":data} ) 
+            return
+
         db.plants.insert_one(data)
+        print("Creating new")
         self.write('yeah')
 
 app = tornado.web.Application(handlers=[

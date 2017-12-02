@@ -5,6 +5,8 @@ ReactDOM = require "react-dom"
 Row = require("antd/lib/row")
 Col = require("antd/lib/col")
 Card = require("antd/lib/card")
+
+Icon = require("antd/lib/icon")
 axios = require "axios"
 
 class HomeView extends React.Component
@@ -12,18 +14,13 @@ class HomeView extends React.Component
         super arguments...
         @state = {
             selected:-1
-            items:[]
         }
 
-    componentWillMount:->
-        axios.get('/dumps').then((response)=>
-            @setState({items:response.data})
-        ).catch((err)=>return)
     render:->
-        len = @state.items?.length
+        len = @props.items?.length
         selected = null
         if @state.selected != -1
-            selected = @state.items[@state.selected]
+            selected = @props.items[@state.selected]
 
         React.createElement Row, {gutter:16},
             React.createElement Col, {md:8, xs:24},
@@ -40,13 +37,15 @@ class HomeView extends React.Component
                                     ()=>
                                         @setState({selected:j})
                                 )(i)
-                            }, @state.items[i].species
+                            }, @props.items[i].species
             
             if selected       
                 React.createElement Col, {md:14, xs:24},
                     React.createElement Card, {
                         className:"home-card"
                         title:selected.species + " / " + selected.latin 
+                        extra: React.createElement Link, {to:"/input", onClick:=>@props.setEdited(@state.selected)}, 
+                            React.createElement Icon, {type:"edit"}
                     },
                         React.createElement "div",{}, "общ вид "+selected.type
                         React.createElement "div",{}, "отдел "+selected.division
@@ -54,21 +53,16 @@ class HomeView extends React.Component
                         React.createElement "div",{}, "жизнен цикъл "+selected.cycle
                         React.createElement "div",{}, "жизнена форма "+selected.form
                         React.createElement "div",{}, "флористичен елемент "+selected.floristic
-                        React.createElement "div",{}, "ниво на застрашеност "+selected.endangered
-                        React.createElement "div",{}, "ядливо "+selected.edible
-                        React.createElement "div",{}, "билка "+selected.herb
-                        React.createElement "img",{
-                            src:selected.image
-                            width:200
-                            height:150
-                            style:{
-                                objectFit:"cover"
-                                position:"absolute"
-                                top:"80px"
-                                right:"20px"
+                        if selected.endangered
+                            React.createElement "div",{}, "ниво на застрашеност "+selected.endangered
+                        if selected.edible
+                            React.createElement "div",{}, "ядливо "
+                        if selected.herb
+                            React.createElement "div",{}, "билка "
+                        if selected.image
+                            React.createElement "img",{
+                                src:selected.image
+                                className:"preview-box"
                             }
-                        }
                 
-
-
 module.exports = HomeView

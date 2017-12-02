@@ -50,7 +50,9 @@ class InputView extends React.Component
                         return
 
                     console.log("form looks good, telling big brother")
-
+                    if @props.edited
+                        values.oid = @props.edited._id.$oid
+                        
                     axios.post("/input", values).then(()=>
                         notification.open {
                             message: 'Success'
@@ -66,6 +68,7 @@ class InputView extends React.Component
         },[
             React.createElement FormItem, {key:-1},
                 getFieldDecorator('type', {
+                    initialValue: @props.edited?.type
                     rules: [{ required: true, message: 'жизнена форма' }],
                     })(
                         React.createElement Select, {
@@ -85,6 +88,7 @@ class InputView extends React.Component
 
             React.createElement FormItem, {key:0},
                 getFieldDecorator('latin', {
+                    initialValue: @props.edited?.latin
                     rules: [{ required: true, message: 'Audacter omnia complens' }],
                     })(
                         React.createElement Input, {
@@ -96,6 +100,7 @@ class InputView extends React.Component
 
             React.createElement FormItem, {key:1},
                 getFieldDecorator('species', {
+                    initialValue: @props.edited?.species
                     rules: [{ required: true, message: 'алооо' }],
                     })(
                         React.createElement Input, {
@@ -106,6 +111,7 @@ class InputView extends React.Component
 
             React.createElement FormItem, {key:2},
                 getFieldDecorator('division', {
+                    initialValue: @props.edited?.division
                     rules: [{ required: true, message: 'задължително' }],
                     })(
                         React.createElement Input, {
@@ -117,6 +123,7 @@ class InputView extends React.Component
 
             React.createElement FormItem, {key:3},
                 getFieldDecorator('family', {
+                    initialValue: @props.edited?.family
                     rules: [{ required: true, message: 'задължително' }],
                     })(
                         React.createElement Input, {
@@ -127,6 +134,7 @@ class InputView extends React.Component
          
             React.createElement FormItem, {key:4},
                 getFieldDecorator('cycle', {
+                    initialValue: @props.edited?.cycle
                     rules: [{ required: true, message: 'жизнена форма' }],
                     })(
                         React.createElement Select, {
@@ -142,6 +150,7 @@ class InputView extends React.Component
            
             React.createElement FormItem, {key:5},
                 getFieldDecorator('form', {
+                    initialValue: @props.edited?.form
                     rules: [{ required: true, message: 'жизнена форма' }],
                     })(
                         React.createElement Select, {
@@ -159,6 +168,7 @@ class InputView extends React.Component
            
             React.createElement FormItem, {key:6},
                 getFieldDecorator('floristic', {
+                    initialValue: @props.edited?.floristic
                     rules: [{ required: true, message: 'флористичен елемент' }],
                     })(
                         React.createElement Select, {
@@ -188,6 +198,7 @@ class InputView extends React.Component
 
             React.createElement FormItem, {key:7},
                 getFieldDecorator('endangered', {
+                    initialValue: @props.edited?.endangered
                     })(
                         React.createElement Select, {
                             mode:"combobox"
@@ -205,7 +216,7 @@ class InputView extends React.Component
 
             React.createElement FormItem, {key:8},
                 getFieldDecorator('altitude', {
-                    initialValue:[1000,1500]
+                    initialValue: @props.edited?.altitude
                     })(
                         React.createElement Slider, {
                             range:true
@@ -222,8 +233,7 @@ class InputView extends React.Component
 
             React.createElement FormItem, {key:9},
                 getFieldDecorator('bloom', {
-                    initialValue:[5,8]
-                    
+                    initialValue: @props.edited?.bloom                  
                     rules: [{ required: true, message: 'моля, попълне' }],
                     })(
                         React.createElement Slider, {
@@ -240,7 +250,7 @@ class InputView extends React.Component
 
             React.createElement FormItem, {key:10},
                 getFieldDecorator('edible', {
-                    initialValue:false
+                    initialValue: @props.edited?.edible
                     valuePropName:"checked"
                     })(
                         React.createElement Switch, {
@@ -251,7 +261,7 @@ class InputView extends React.Component
 
             React.createElement FormItem, {key:11},
                 getFieldDecorator('herb', {
-                    initialValue:false
+                    initialValue: @props.edited?.herb
                     valuePropName:"checked"
                     })(
                         React.createElement Switch, {
@@ -262,7 +272,7 @@ class InputView extends React.Component
 
             React.createElement FormItem, {key:12},
                 getFieldDecorator('law', {
-                    initialValue:false
+                    initialValue: @props.edited?.law
                     valuePropName:"checked"
                     })(
                         React.createElement Switch, {
@@ -272,7 +282,9 @@ class InputView extends React.Component
                     )
 
             React.createElement FormItem, {key:13},
-                getFieldDecorator('image', {})(
+                getFieldDecorator('image', {
+                    initialValue: @props.edited?.image
+                })(
                         React.createElement Input, {
                             placeholder:"image url"
                             className:"input-200-20"
@@ -285,6 +297,14 @@ class InputView extends React.Component
                     htmlType:"submit"
                     className:"input-200-20"
                 }, "Запази"
+            
+            React.createElement Button, {
+                key:"21"
+                type:"danger"
+                onClick:=>
+                    if confirm("You sure?")
+                        alert("WOW")
+            }, "Изтрий"
         ]   
         
 module.exports = Form.create()(InputView)
