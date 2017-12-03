@@ -266,6 +266,16 @@ class InputView extends React.Component
                             unCheckedChildren:"не се яде"
                         }
                     )
+            React.createElement FormItem, {key:10},
+                getFieldDecorator('poisonous', {
+                    initialValue: @props.edited?.poisonous
+                    valuePropName:"checked"
+                    })(
+                        React.createElement Switch, {
+                            checkedChildren:"отровно"
+                            unCheckedChildren:"не отровно"
+                        }
+                    )
 
             React.createElement FormItem, {key:11},
                 getFieldDecorator('herb', {

@@ -76,8 +76,6 @@ class Main extends React.Component
                                 onOk:()=>
                                     url = @input.refs.input.value
                                     axios.post("/import", {url:url}).then((response)=>
-                                        console.log(response)
-                                        console.log(response.data)
                                         @setState({edited:response.data})
                                     ).catch((error)=>
                                         notification.open {
