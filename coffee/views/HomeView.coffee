@@ -51,7 +51,6 @@ class HomeView extends React.Component
                         React.createElement "div",{}, "отдел "+selected.division
                         React.createElement "div",{}, "семейство "+selected.family
                         React.createElement "div",{}, "жизнен цикъл "+selected.cycle
-                        React.createElement "div",{}, "жизнена форма "+selected.form
                         React.createElement "div",{}, "флористичен елемент "+selected.floristic
                         if selected.endangered
                             React.createElement "div",{}, "ниво на застрашеност "+selected.endangered
@@ -59,6 +58,8 @@ class HomeView extends React.Component
                             React.createElement "div",{}, "ядливо "
                         if selected.herb
                             React.createElement "div",{}, "билка "
+                        if selected.law
+                            React.createElement "div",{}, "защитено от закона "
                         if selected.image
                             React.createElement "img",{
                                 src:selected.image

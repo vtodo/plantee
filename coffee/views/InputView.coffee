@@ -84,11 +84,11 @@ class InputView extends React.Component
                             React.createElement SelectOption, {key:0, value:"trees"}, "Дървета"
                             React.createElement SelectOption, {key:1, value:"shrubs"}, "Храсти"
                             React.createElement SelectOption, {key:2, value:"flowers"}, "Цветя"
-
-                            React.createElement SelectOption, {key:3, value:"ferns"}, "Папрати"
-                            React.createElement SelectOption, {key:4, value:"mosses"}, "Мъхове"
-                            React.createElement SelectOption, {key:5, value:"liana"}, "Лияни"
-                            React.createElement SelectOption, {key:6, value:"shrooms"}, "Гъби"
+                            React.createElement SelectOption, {key:3, value:"grass"}, "Тревисти"
+                            React.createElement SelectOption, {key:4, value:"ferns"}, "Спорови"
+                            React.createElement SelectOption, {key:5, value:"mosses"}, "Мъхове"
+                            React.createElement SelectOption, {key:6, value:"liana"}, "Лияни"
+                            React.createElement SelectOption, {key:7, value:"shrooms"}, "Гъби"
                     )
 
             React.createElement FormItem, {key:0},
@@ -153,23 +153,23 @@ class InputView extends React.Component
                     )
 
            
-            React.createElement FormItem, {key:5},
-                getFieldDecorator('form', {
-                    initialValue: @props.edited?.form
-                    rules: [{ required: true, message: 'жизнена форма' }],
-                    })(
-                        React.createElement Select, {
-                            mode:"combobox"
-                            placeholder:"жизнена форма"
-                            className:"input-200-20"
-                        }, 
-                            React.createElement SelectOption, {key:0, value:"phanerophytes"}, "Phanerophytes"
-                            React.createElement SelectOption, {key:1, value:"chamaephytes"}, "Chamaephytes"
-                            React.createElement SelectOption, {key:2, value:"hemicryptophytes"}, "Hemicryptophytes"
-                            React.createElement SelectOption, {key:3, value:"cryptophytes"}, "Cryptophytes"
-                            React.createElement SelectOption, {key:4, value:"epiphytes"}, "Epiphytes"
-                            React.createElement SelectOption, {key:5, value:"therophytes"}, "Therophytes"
-                    )
+            # React.createElement FormItem, {key:5},
+            #     getFieldDecorator('form', {
+            #         initialValue: @props.edited?.form
+            #         rules: [{ required: true, message: 'жизнена форма' }],
+            #         })(
+            #             React.createElement Select, {
+            #                 mode:"combobox"
+            #                 placeholder:"жизнена форма"
+            #                 className:"input-200-20"
+            #             }, 
+            #                 React.createElement SelectOption, {key:0, value:"phanerophytes"}, "Phanerophytes"
+            #                 React.createElement SelectOption, {key:1, value:"chamaephytes"}, "Chamaephytes"
+            #                 React.createElement SelectOption, {key:2, value:"hemicryptophytes"}, "Hemicryptophytes"
+            #                 React.createElement SelectOption, {key:3, value:"cryptophytes"}, "Cryptophytes"
+            #                 React.createElement SelectOption, {key:4, value:"epiphytes"}, "Epiphytes"
+            #                 React.createElement SelectOption, {key:5, value:"therophytes"}, "Therophytes"
+            #         )
            
             React.createElement FormItem, {key:6},
                 getFieldDecorator('floristic', {
@@ -239,7 +239,7 @@ class InputView extends React.Component
             React.createElement FormItem, {key:9},
                 getFieldDecorator('bloom', {
                     initialValue: @props.edited?.bloom                  
-                    rules: [{ required: true, message: 'моля, попълне' }],
+                    # rules: [{ required: true, message: 'моля, попълне' }],
                     })(
                         React.createElement Slider, {
                             range:true
