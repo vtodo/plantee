@@ -177,7 +177,7 @@ class InputView extends React.Component
             React.createElement FormItem, {key:6},
                 getFieldDecorator('floristic', {
                     initialValue: @props.edited?.floristic
-                    rules: [{ required: true, message: 'флористичен елемент' }],
+                    # rules: [{ required: true, message: 'флористичен елемент' }],
                     })(
                         React.createElement Select, {
                             mode:"combobox"
