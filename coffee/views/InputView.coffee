@@ -266,7 +266,7 @@ class InputView extends React.Component
                             unCheckedChildren:"не се яде"
                         }
                     )
-            React.createElement FormItem, {key:10},
+            React.createElement FormItem, {key:11},
                 getFieldDecorator('poisonous', {
                     initialValue: @props.edited?.poisonous
                     valuePropName:"checked"
@@ -277,7 +277,7 @@ class InputView extends React.Component
                         }
                     )
 
-            React.createElement FormItem, {key:11},
+            React.createElement FormItem, {key:12},
                 getFieldDecorator('herb', {
                     initialValue: @props.edited?.herb
                     valuePropName:"checked"
@@ -288,7 +288,7 @@ class InputView extends React.Component
                         }
                     )
 
-            React.createElement FormItem, {key:12},
+            React.createElement FormItem, {key:13},
                 getFieldDecorator('law', {
                     initialValue: @props.edited?.law
                     valuePropName:"checked"
@@ -299,7 +299,7 @@ class InputView extends React.Component
                         }
                     )
 
-            React.createElement FormItem, {key:13},
+            React.createElement FormItem, {key:14},
                 getFieldDecorator('image', {
                     initialValue: @props.edited?.image
                 })(
