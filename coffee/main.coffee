@@ -47,8 +47,8 @@ class Main extends React.Component
 
                         React.createElement Route, {path:"/", render:=>React.createElement HomeView, {
                             items:@state.items
-                            setEdited:(i)=>
-                                @setState({edited:@state.items[i]})
+                            setEdited:(edited)=>
+                                @setState({edited})
                         }}
                 
                 React.createElement Header, {

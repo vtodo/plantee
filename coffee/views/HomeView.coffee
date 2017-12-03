@@ -12,15 +12,11 @@ axios = require "axios"
 class HomeView extends React.Component
     constructor:->
         super arguments...
-        @state = {
-            selected:-1
-        }
 
     render:->
         len = @props.items?.length
-        selected = null
-        if @state.selected != -1
-            selected = @props.items[@state.selected]
+        if not len
+            return null
 
         React.createElement Row, {gutter:16},
             React.createElement Col, {md:8, xs:24},
@@ -28,41 +24,43 @@ class HomeView extends React.Component
                     className:"home-card"                    
                     title:"Последно добавени растения"
                 },  
-                    for i in [0...len]
+                    for i in [len-1..0]
                         React.DOM.li {key:i},
-                            React.createElement "a", {
+                            React.createElement Link, {
+                                to:"/input"
+                                onClick:((j)=>=>@props.setEdited(@props.items[j]))(i)
                                 style:{color:"black"}
-                                onClick:((t)=>
-                                    j = t
-                                    ()=>
-                                        @setState({selected:j})
-                                )(i)
                             }, @props.items[i].species
             
-            if selected       
-                React.createElement Col, {md:14, xs:24},
+                   
+            React.createElement Col, {md:14, xs:24},
+                for i in [len-1..0]
                     React.createElement Card, {
+                        key:i
                         className:"home-card"
-                        title:selected.species + " / " + selected.latin 
-                        extra: React.createElement Link, {to:"/input", onClick:=>@props.setEdited(@state.selected)}, 
+                        title:@props.items[i].species + " / " + @props.items[i].latin 
+                        extra: React.createElement Link, {
+                                to:"/input"
+                                onClick:((j)=>=>@props.setEdited(@props.items[j]))(i)
+                            }, 
                             React.createElement Icon, {style:{fontSize:40, color:"red"}, type:"edit"}
                     },
-                        React.createElement "div",{}, "общ вид "+selected.type
-                        React.createElement "div",{}, "отдел "+selected.division
-                        React.createElement "div",{}, "семейство "+selected.family
-                        React.createElement "div",{}, "жизнен цикъл "+selected.cycle
-                        React.createElement "div",{}, "флористичен елемент "+selected.floristic
-                        if selected.endangered
-                            React.createElement "div",{}, "ниво на застрашеност "+selected.endangered
-                        if selected.edible
+                        React.createElement "div",{}, "общ вид "+@props.items[i].type
+                        React.createElement "div",{}, "отдел "+@props.items[i].division
+                        React.createElement "div",{}, "семейство "+@props.items[i].family
+                        React.createElement "div",{}, "жизнен цикъл "+@props.items[i].cycle
+                        React.createElement "div",{}, "флористичен елемент "+@props.items[i].floristic
+                        if @props.items[i].endangered
+                            React.createElement "div",{}, "ниво на застрашеност "+@props.items[i].endangered
+                        if @props.items[i].edible
                             React.createElement "div",{}, "ядливо "
-                        if selected.herb
+                        if @props.items[i].herb
                             React.createElement "div",{}, "билка "
-                        if selected.law
+                        if @props.items[i].law
                             React.createElement "div",{}, "защитено от закона "
-                        if selected.image
+                        if @props.items[i].image
                             React.createElement "img",{
-                                src:selected.image
+                                src:@props.items[i].image
                                 className:"preview-box"
                             }
                 
