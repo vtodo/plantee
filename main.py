@@ -52,8 +52,10 @@ class ImportHandler(tornado.web.RequestHandler):
         latin = xml.xpath("//td[contains(text(),'вид:')]/following-sibling::td[1]/descendant::*/text()")
         latin = ' '.join(s.strip() for s in latin)
         
-        division = xml.xpath("//td[contains(text(),'отдел:')]/following-sibling::td/*/text()")
-        family = xml.xpath("//td[contains(text(),'семейство:')]/following-sibling::td/*/text()")
+        division = xml.xpath("//td[contains(text(),'отдел:')]/following-sibling::td/*/text()")[0]
+        family = xml.xpath("//td[contains(text(),'семейство:')]/following-sibling::td/*/text()")[0]
+        image = 'http:'+xml.xpath("//*[@data-file-width='640']/@src")[0]
+
         cycle = None
         lower = r.text.lower()
         if "едногодишно" in lower:
@@ -67,9 +69,10 @@ class ImportHandler(tornado.web.RequestHandler):
         self.write(tornado.escape.json_encode({
             "species": species,
             "latin": latin,
-            "family": family[0],
-            "division": division[0],
-            "cycle" : cycle
+            "family": family,
+            "division": division,
+            "cycle": cycle,
+            "image": image
         }))
 
 app = tornado.web.Application(handlers=[

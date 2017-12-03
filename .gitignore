@@ -3,3 +3,4 @@ __pycache__/
 node_modules/
 dist/js/
 package-lock.json
+dist/js/main.bundle.js

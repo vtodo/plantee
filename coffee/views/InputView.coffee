@@ -49,10 +49,13 @@ class InputView extends React.Component
                     if err 
                         console.log "nah, there were errors ", err
                         return
+                    
+                    _.extend @props.edited, values
 
                     console.log("form looks good, telling big brother")
                     if @props.edited?._id?
                         values.oid = @props.edited._id.$oid
+
                         
                     axios.post("/input", values).then(()=>
                         notification.open {
