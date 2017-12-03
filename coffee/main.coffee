@@ -61,8 +61,9 @@ class Main extends React.Component
                     React.createElement Link, {to:"/input", style:{width:"20%"}, onClick:=>@setState({edited:null})}, 
                         React.createElement "div", {style:{width:"100%",height:"100%", backgroundColor:"purple"}},
                             "добави"
-                    
-                    React.createElement "a", {style:{width:"20%"}, onClick:()=>
+                    React.createElement Switch, {},
+                    React.createElement Route, {path:"/input", render:=>
+                        React.createElement "a", {style:{width:"20%"}, onClick:()=>
                             confirm({
                                 title:"Import from wikipedia"
                                 okText:"go"
@@ -79,7 +80,7 @@ class Main extends React.Component
                                         console.log(response.data)
                                         @setState({edited:response.data})
                                     ).catch((error)=>
-                                     notification.open {
+                                        notification.open {
                                         message: 'Failed to retrieve'
                                         description: 'There may be or may be not any reason for it'
                                         }
@@ -88,6 +89,8 @@ class Main extends React.Component
                         }, 
                         React.createElement "div", {style:{width:"100%",height:"100%", backgroundColor:"gold"}},
                             "wiki"
+                    }
+                    
                     
                         
                 
