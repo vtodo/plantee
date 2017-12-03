@@ -1,8 +1,10 @@
 from pymongo import MongoClient
 from os import environ
 from datetime import datetime
+from lxml import html
 import tornado.web
 import logging
+import requests
 from bson.json_util import dumps
 from bson.objectid import ObjectId
 
@@ -37,11 +39,45 @@ class InputHandler(AppHandler):
         print("Creating new")
         self.write('yeah')
 
+class ImportHandler(tornado.web.RequestHandler):
+    def post(self):
+        data = tornado.escape.json_decode(self.request.body)
+        url = data['url']
+        
+        r = requests.get(url)
+        xml = html.fromstring(r.text)
+
+        species = xml.xpath("//td[contains(text(),'вид:')]/following-sibling::td[last()]/descendant::*/text()")
+        species = ' '.join(s.strip() for s in species)
+        latin = xml.xpath("//td[contains(text(),'вид:')]/following-sibling::td[1]/descendant::*/text()")
+        latin = ' '.join(s.strip() for s in latin)
+        
+        division = xml.xpath("//td[contains(text(),'отдел:')]/following-sibling::td/*/text()")
+        family = xml.xpath("//td[contains(text(),'семейство:')]/following-sibling::td/*/text()")
+        cycle = None
+        lower = r.text.lower()
+        if "едногодишно" in lower:
+            cycle = "annual"
+        elif "двугодишно" in lower:
+            cycle = "biennial"
+        else:
+            cycle = "perennial"
+
+        print(species, latin, division, family)
+        self.write(tornado.escape.json_encode({
+            "species": species,
+            "latin": latin,
+            "family": family[0],
+            "division": division[0],
+            "cycle" : cycle
+        }))
+
 app = tornado.web.Application(handlers=[
     (r"/assets/(.*)", tornado.web.StaticFileHandler, {"path": "dist/assets/"}),
     (r"/js/(.*)", tornado.web.StaticFileHandler, {"path": "dist/js"}),
     (r"/css/(.*)", tornado.web.StaticFileHandler, {"path": "dist/css/"}),
     (r"/dumps", DataHandler),
     (r"/input", InputHandler),    
+    (r"/import", ImportHandler),    
     (r"/(.*)", AppHandler)
 ])

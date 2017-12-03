@@ -9,6 +9,10 @@ HomeView = require "./views/HomeView.coffee"
 InputView = require "./views/InputView.coffee"
 
 
+{confirm} = require "antd/lib/modal"
+notification = require "antd/lib/notification"
+
+Input = require "antd/lib/input"
 Tag = require "antd/lib/tag"
 Table = require "antd/lib/table"
 Layout = require "antd/lib/layout"
@@ -57,6 +61,34 @@ class Main extends React.Component
                     React.createElement Link, {to:"/input", style:{width:"20%"}, onClick:=>@setState({edited:null})}, 
                         React.createElement "div", {style:{width:"100%",height:"100%", backgroundColor:"purple"}},
                             "добави"
+                    
+                    React.createElement "a", {style:{width:"20%"}, onClick:()=>
+                            confirm({
+                                title:"Import from wikipedia"
+                                okText:"go"
+                                cancelText:"back"
+                                content: React.createElement Input, {
+                                    ref:(f)=>@input = f
+                                    defaultValue:"https://bg.wikipedia.org/wiki/%D0%91%D0%B0%D0%BB%D0%BA%D0%B0%D0%BD%D1%81%D0%BA%D0%B0_%D1%87%D1%83%D0%B1%D1%80%D0%B8%D1%86%D0%B0"
+                                }
+
+                                onOk:()=>
+                                    url = @input.refs.input.value
+                                    axios.post("/import", {url:url}).then((response)=>
+                                        console.log(response)
+                                        console.log(response.data)
+                                        @setState({edited:response.data})
+                                    ).catch((error)=>
+                                     notification.open {
+                                        message: 'Failed to retrieve'
+                                        description: 'There may be or may be not any reason for it'
+                                        }
+                                    )
+                            })
+                        }, 
+                        React.createElement "div", {style:{width:"100%",height:"100%", backgroundColor:"gold"}},
+                            "wiki"
+                    
                         
                 
                 React.createElement Footer, {

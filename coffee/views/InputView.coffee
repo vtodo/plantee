@@ -50,7 +50,7 @@ class InputView extends React.Component
                         return
 
                     console.log("form looks good, telling big brother")
-                    if @props.edited
+                    if @props.edited?._id?
                         values.oid = @props.edited._id.$oid
                         
                     axios.post("/input", values).then(()=>
