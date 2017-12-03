@@ -3,6 +3,7 @@ ReactDOM = require "react-dom"
 axios = require "axios"
 
 _ = require "underscore"
+{ withRouter } = require "react-router-dom"
 
 Progress = require "antd/lib/progress"
 Table = require "antd/lib/table"
@@ -55,8 +56,12 @@ class InputView extends React.Component
                         
                     axios.post("/input", values).then(()=>
                         notification.open {
+                            duration:1.5
                             message: 'Success'
-                            description: 'You made it'
+                            description: 'You made it',
+                            onClose:()=>
+                                @props.history.push('/')
+                                
                         }
                     ).catch(()=>
                         notification.open {
@@ -307,4 +312,4 @@ class InputView extends React.Component
             }, "Изтрий"
         ]   
         
-module.exports = Form.create()(InputView)
+module.exports = withRouter(Form.create()(InputView))

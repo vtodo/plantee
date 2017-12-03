@@ -45,7 +45,7 @@ class HomeView extends React.Component
                         className:"home-card"
                         title:selected.species + " / " + selected.latin 
                         extra: React.createElement Link, {to:"/input", onClick:=>@props.setEdited(@state.selected)}, 
-                            React.createElement Icon, {type:"edit"}
+                            React.createElement Icon, {style:{fontSize:40, color:"red"}, type:"edit"}
                     },
                         React.createElement "div",{}, "общ вид "+selected.type
                         React.createElement "div",{}, "отдел "+selected.division
