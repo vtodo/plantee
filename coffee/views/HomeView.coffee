@@ -39,11 +39,11 @@ class HomeView extends React.Component
                         key:i
                         className:"home-card"
                         title:@props.items[i].species + " / " + @props.items[i].latin 
-                        extra: React.createElement Link, {
-                                to:"/input"
-                                onClick:((j)=>=>@props.setEdited(@props.items[j]))(i)
-                            }, 
-                            React.createElement Icon, {style:{fontSize:40, color:"red"}, type:"edit"}
+                        # extra: React.createElement Link, {
+                        #         to:"/input"
+                        #         onClick:((j)=>=>@props.setEdited(@props.items[j]))(i)
+                        #     }, 
+                        #     React.createElement Icon, {style:{fontSize:40, color:"red"}, type:"edit"}
                     },
                         React.createElement "div",{}, "общ вид "+@props.items[i].type
                         React.createElement "div",{}, "отдел "+@props.items[i].division
