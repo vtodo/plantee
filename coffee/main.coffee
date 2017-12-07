@@ -58,9 +58,9 @@ class Main extends React.Component
                     React.createElement Link, {to:"/", style:{width:"20%"}, onClick:=>@retrieveItems()},
                         React.createElement "div", {style:{width:"100%",height:"100%", backgroundColor:"green"}},
                             "списък"
-                    React.createElement Link, {to:"/input", style:{width:"20%"}, onClick:=>@setState({edited:null})}, 
-                        React.createElement "div", {style:{width:"100%",height:"100%", backgroundColor:"purple"}},
-                            "добави"
+                    # React.createElement Link, {to:"/input", style:{width:"20%"}, onClick:=>@setState({edited:null})}, 
+                    #     React.createElement "div", {style:{width:"100%",height:"100%", backgroundColor:"purple"}},
+                    #         "добави"
                     React.createElement Switch, {},
                     React.createElement Route, {path:"/input", render:=>
                         React.createElement "a", {style:{width:"20%"}, onClick:()=>
