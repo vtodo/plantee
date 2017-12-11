@@ -5,26 +5,33 @@
   "engines": {
     "node": "8.9.1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vtodo/plantee.git"
+  },
   "scripts": {
     "postinstall": "./postinstall.sh"
   },
   "author": "vtodo",
   "license": "ISC",
   "dependencies": {
-    "antd": "^2.13.2",
-    "axios": "^0.16.2",
+    "antd": "latest",
+    "axios": "latest",
     "browserify": "^14.5.0",
     "coffeeify": "^2.1.0",
     "coffeescript": "^2.0.0",
     "qs": "^6.5.1",
-    "react": "^15.6.1",
+    "rc-queue-anim": "^1.4.1",
+    "rc-scroll-anim": "^2.1.0",
+    "rc-tween-one": "^1.5.8",
+    "react": "^16.0.0",
     "react-custom-scrollbars": "^4.1.2",
-    "react-dom": "^15.6.1",
+    "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
     "react-router": "^3.0.5",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
-    "uglify-js": "^3.1.9",
+    "uglify-js": "latest",
     "underscore": "^1.8.3"
   }
 }
