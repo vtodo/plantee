@@ -1,3 +1,4 @@
+_package = require "../package.json"
 React = require "react"
 ReactDOM = require "react-dom"
 axios = require "axios"
@@ -21,6 +22,7 @@ Layout = require "antd/lib/layout"
 
 class Main extends React.Component
     constructor:->
+        console.log "running v." + _package.version
         super arguments...
         @state = {
            items:[]
@@ -69,13 +71,13 @@ class Main extends React.Component
                                 okText:"go"
                                 cancelText:"back"
                                 content: React.createElement Input, {
-                                    ref:(f)=>@input = f
+                                    ref:(f)=>@input = f.input
                                     defaultValue:"https://bg.wikipedia.org/wiki/%D0%91%D0%B0%D0%BB%D0%BA%D0%B0%D0%BD%D1%81%D0%BA%D0%B0_%D1%87%D1%83%D0%B1%D1%80%D0%B8%D1%86%D0%B0"
                                 }
 
                                 onOk:()=>
-                                    url = @input.refs.input.value
-                                    axios.post("/import", {url:url}).then((response)=>
+                                    
+                                    axios.post("/import", {url:@input.value}).then((response)=>
                                         @setState({edited:response.data})
                                     ).catch((error)=>
                                         notification.open {
